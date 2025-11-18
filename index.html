@@ -3,10 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="icon" href="favicon.png" type="favicon.png" />
     <title>Recorrido VR Web</title>
 
     <!-- A-Frame -->
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <!-- Componente para reproducir animaciones de modelos glTF/GLB -->
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
 
     <style>
       body {
@@ -20,29 +23,19 @@
     <!-- Escena VR -->
     <a-scene id="sceneMain">
 
-      <!-- Piso -->
-      <a-plane
-        id="floor"
-        color="#555"
-        rotation="-90 0 0"
-        width="20"
-        height="20"
-      ></a-plane>
+      <!-- Assets mínimos: coloque su archivo de audio en audio/ambience.mp3 -->
+      <a-assets>
+        <audio id="ambience" src="humedales_fondo.wav" preload="auto"></audio>
+      </a-assets>
 
-      <!-- Control derecho -->
-      <a-entity
-        id="rightHand"
-        oculus-touch-controls="hand: right"
-        hand-controls="hand: right">
-      </a-entity>
+      <!-- Cámara VR -->
+      <a-entity camera wasd-controls rotation="0 0 0" look-controls></a-entity>
 
-      <!-- Control izquierdo -->
-      <a-entity
-        id="leftHand"
-        oculus-touch-controls="hand: left"
-        hand-controls="hand: left">
-      </a-entity>
+      <!-- Carga modelo glb (añadido animation-mixer para reproducir animaciones incluidas) -->
+      <a-entity gltf-model="Untitled.glb" id="Fondo" animation-mixer="timeScale: 0.1"></a-entity>
 
+      <!-- Entidad de audio simple en bucle -->
+      <a-sound src="#ambience" autoplay="true" loop="true" positional="false" volume="0.6"></a-sound>
     </a-scene>
   </body>
 </html>
