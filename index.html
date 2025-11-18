@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recorrido VR Web</title>
+
+    <!-- A-Frame -->
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Escena VR -->
+    <a-scene id="sceneMain">
+
+      <!-- Piso -->
+      <a-plane
+        id="floor"
+        color="#555"
+        rotation="-90 0 0"
+        width="20"
+        height="20"
+      ></a-plane>
+
+      <!-- Control derecho -->
+      <a-entity
+        id="rightHand"
+        oculus-touch-controls="hand: right"
+        hand-controls="hand: right">
+      </a-entity>
+
+      <!-- Control izquierdo -->
+      <a-entity
+        id="leftHand"
+        oculus-touch-controls="hand: left"
+        hand-controls="hand: left">
+      </a-entity>
+
+    </a-scene>
+  </body>
+</html>
